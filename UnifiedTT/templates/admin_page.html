@@ -7,10 +7,16 @@
       <h1>HI</h1>
       <h3><u>Upload CSV files from DSS</u></h3>
       {{ order }}
-      <form method ="post" action = "update_database_dss" enctype="multipart/form-data">
+      <form method ="post" enctype="multipart/form-data">
           {% csrf_token %}
-          <label>Upload a file</label>
-          <input type="file" name = "file">
+          <label>Upload students CSV file</label>
+          <input type="file" name = "students_file">
+          <label>Upload teachers CSV file</label>
+          <input type="file" name = "teachers_file">
+          <label>Upload Courses CSV file</label>
+          <input type="file" name = "courses_file">
+          <label>Upload Slots for Time Table CSV file</label>
+          <input type="file" name = "slots_file">
           <p>Note : Only accepts CSV files</p>
           <input class="btn-lg btn-primary" type="submit" value="Upload">
       </form>

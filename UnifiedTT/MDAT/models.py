@@ -17,7 +17,7 @@ class students(models.Model):
         db_table = 'student'
 
 class teachers(models.Model):
-    teacher_id = models.CharField(max_length = 20)
+    teacher_id = models.CharField(max_length = 50)
     course_id = models.CharField(max_length = 20)
     batch_id = models.CharField(max_length = 20)
 
