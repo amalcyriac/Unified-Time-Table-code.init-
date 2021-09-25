@@ -78,5 +78,78 @@ def new_admin(request):
     time_table.objects.all().delete()
     return HttpResponse("Successfully uploaded, Thank you.")
 
-def update_database_dss(request):
-    return HttpResponse("File received thank you!")
+def find_tt_student(request):
+    template = "student_page.html"
+    if request.method == "GET":
+        form = forms.roll_no()
+        return render(request,template,{'form':form})
+
+    form = forms.roll_no(request.POST)
+    if form.is_valid():
+        input_roll_no = form.cleaned_data['roll_no']
+        if students.objects.filter(student_id__icontains = input_roll_no).exists() :
+            var1 = students.objects.values().filter(student_id = input_roll_no.lower())
+
+            #for item in var1:
+            #    print(item)
+            #print(var1)
+
+            var2 = []
+            for item in var1:
+                temp = item['course_id']
+                var2.extend(courses.objects.values().filter(course_id = temp))
+            #print(var2)
+
+            var3 = []
+            slots = []
+            slot_subject_map = {}
+            for item in var2:
+                temp = item['slot']
+                slots.extend(temp)
+                slot_subject_map[item['slot']] = item['course_name']
+            var3 = slot_time_table.objects.values().all()
+            #print(var3)
+
+            for item in var3:
+                if item["hour1"] not in slots:
+                    item["hour1"] = ""
+                if item["hour2"] not in slots:
+                    item["hour2"] = ""
+                if item["hour3"] not in slots:
+                    item["hour3"] = ""
+                if item["hour4"] not in slots:
+                    item["hour4"] = ""
+                if item["hour5"] not in slots:
+                    item["hour5"] = ""
+                if item["hour6"] not in slots:
+                    item["hour6"] = ""
+                if item["hour7"] not in slots:
+                    item["hour7"] = ""
+                if item["hour8"] not in slots:
+                    item["hour8"] = ""
+                if item["hour9"] not in slots:
+                    item["hour9"] = ""
+            for item in var3:
+                if item["hour1"] in slots:
+                    item["hour1"] = slot_subject_map[item["hour1"]]
+                if item["hour2"] in slots:
+                    item["hour2"] = slot_subject_map[item["hour2"]]
+                if item["hour3"] in slots:
+                    item["hour3"] = slot_subject_map[item["hour3"]]
+                if item["hour4"] in slots:
+                    item["hour4"] = slot_subject_map[item["hour4"]]
+                if item["hour5"] in slots:
+                    item["hour5"] = slot_subject_map[item["hour5"]]
+                if item["hour6"] in slots:
+                    item["hour6"] = slot_subject_map[item["hour6"]]
+                if item["hour7"] in slots:
+                    item["hour7"] = slot_subject_map[item["hour7"]]
+                if item["hour8"] in slots:
+                    item["hour8"] = slot_subject_map[item["hour8"]]
+                if item["hour9"] in slots:
+                    item["hour9"] = slot_subject_map[item["hour9"]]
+            #print(var3)
+            return render(request,'student_page.html',{'form':form,'var3':var3,})
+
+        else :
+            return HttpResponse("Error")
