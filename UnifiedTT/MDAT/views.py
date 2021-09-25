@@ -95,10 +95,21 @@ def find_tt_student(request):
             #for item in var1:
             #    print(item)
             #print(var1)
+            batch_id_for_student = []
+            for item in var1:
+                batch_id_for_student.extend(item["batch_id"])
+            print(batch_id_for_student)
             var4 = time_table.objects.values()
             print("var4 = ")
             print(var4)
-            
+            var5 = []
+            for item in var4:
+                if item["batch_id"] in batch_id_for_student:
+                    var5.append(item)
+            print("var5 = ")
+            print(var5)
+            #AMAL LOOK HERE
+            # var5 has all the data we need
             var2 = []
             for item in var1:
                 temp = item['course_id']
