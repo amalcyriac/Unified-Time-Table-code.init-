@@ -1,0 +1,8 @@
+pip install virtualenv
+virtualenv newenv
+newenv\Scripts\activate
+pip install django
+django-admin --version (outputs 3.2.7)
+django-admin startproject UnifiedTT
+cd UnifiedTT
+python manage.py runserver
