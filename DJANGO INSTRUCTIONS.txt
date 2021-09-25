@@ -1,4 +1,7 @@
 install postgresql
+pgadmin 4 password : themaster
+install pgadmin (if not already there)
+
 username : postgres
 password : postgres
 
@@ -34,10 +37,3 @@ python manage.py createsuperuser
 thanzeel
 password
 
-class student(models.Model):
-    student_id = models.CharField(max_length = 20)
-    course_id = models.CharField(max_length = 20)
-    batch_id = models.CharField(max_length = 20)
-
-    class Meta:
-        db_table = 'student'
