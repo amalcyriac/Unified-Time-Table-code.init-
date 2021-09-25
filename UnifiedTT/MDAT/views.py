@@ -5,6 +5,8 @@ import csv,io
 from MDAT.models import time_table,students,teachers,courses,slot_time_table
 from . import forms
 #from django.contrib.auth import logout
+from django.core import serializers
+from django.http import JsonResponse
 
 def index(request):
     return HttpResponse("Hello, world !")
@@ -93,7 +95,10 @@ def find_tt_student(request):
             #for item in var1:
             #    print(item)
             #print(var1)
-
+            var4 = time_table.objects.values()
+            print("var4 = ")
+            print(var4)
+            
             var2 = []
             for item in var1:
                 temp = item['course_id']
@@ -107,7 +112,7 @@ def find_tt_student(request):
                 temp = item['slot']
                 slots.extend(temp)
                 slot_subject_map[item['slot']] = item['course_name']
-            var3 = slot_time_table.objects.values().all()
+            var3 = slot_time_table.objects.all().values()
             #print(var3)
 
             for item in var3:
@@ -148,7 +153,7 @@ def find_tt_student(request):
                     item["hour8"] = slot_subject_map[item["hour8"]]
                 if item["hour9"] in slots:
                     item["hour9"] = slot_subject_map[item["hour9"]]
-            print(var3)
+            #print(var3)
             for item in var3:
                 if item["day"] == '1':
                     item["day"] = "Monday"
