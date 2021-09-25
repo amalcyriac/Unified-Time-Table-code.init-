@@ -98,16 +98,16 @@ def find_tt_student(request):
             batch_id_for_student = []
             for item in var1:
                 batch_id_for_student.extend(item["batch_id"])
-            print(batch_id_for_student)
+            #print(batch_id_for_student)
             var4 = time_table.objects.values()
-            print("var4 = ")
-            print(var4)
+            #print("var4 = ")
+            #print(var4)
             var5 = []
             for item in var4:
                 if item["batch_id"] in batch_id_for_student:
                     var5.append(item)
-            print("var5 = ")
-            print(var5)
+            #print("var5 = ")
+            #print(var5)
             #AMAL LOOK HERE
             # var5 has all the data we need
             var2 = []
@@ -164,7 +164,7 @@ def find_tt_student(request):
                     item["hour8"] = slot_subject_map[item["hour8"]]
                 if item["hour9"] in slots:
                     item["hour9"] = slot_subject_map[item["hour9"]]
-            #print(var3)
+
             for item in var3:
                 if item["day"] == '1':
                     item["day"] = "Monday"
@@ -176,7 +176,7 @@ def find_tt_student(request):
                     item["day"] = "Thursday"
                 elif item["day"] == '5':
                     item["day"] = "Friday"
-
+            print(var3)
             return render(request,'home_student.html',{'form':form,'var3':var3,})
 
         else :
