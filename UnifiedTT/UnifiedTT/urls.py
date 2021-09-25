@@ -11,4 +11,5 @@ urlpatterns = [
     path('index/', include('MDAT.urls')),
     path('new_admin', views.new_admin, name='new_admin'),
     path('student', views.find_tt_student, name='student'),
+    path('fill_time_table_using_dss_data/', views.fill_time_table_using_dss_data, name='fill_time_table_using_dss_data'),
 ]

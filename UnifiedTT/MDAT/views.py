@@ -79,7 +79,7 @@ def new_admin(request):
     return HttpResponse("Successfully uploaded, Thank you.")
 
 def find_tt_student(request):
-    template = "student_page.html"
+    template = "home_student.html"
     if request.method == "GET":
         form = forms.roll_no()
         return render(request,template,{'form':form})
@@ -148,8 +148,49 @@ def find_tt_student(request):
                     item["hour8"] = slot_subject_map[item["hour8"]]
                 if item["hour9"] in slots:
                     item["hour9"] = slot_subject_map[item["hour9"]]
-            #print(var3)
-            return render(request,'student_page.html',{'form':form,'var3':var3,})
+            print(var3)
+            for item in var3:
+                if item["day"] == '1':
+                    item["day"] = "Monday"
+                elif item["day"] == '2':
+                    item["day"] = "Tuesday"
+                elif item["day"] == '3':
+                    item["day"] = "Wednesday"
+                elif item["day"] == '4':
+                    item["day"] = "Thursday"
+                elif item["day"] == '5':
+                    item["day"] = "Friday"
+
+            return render(request,'home_student.html',{'form':form,'var3':var3,})
 
         else :
             return HttpResponse("Error")
+
+def fill_time_table_using_dss_data(request):
+    # _,row=credited_courses_table.objects.update_or_create(roll_no=roll,faculty_name='SUSHANT VARMA',course_name='MATHEMATICS',feedback_status=0)
+    time_table.objects.all().delete()
+    courses_rows=courses.objects.values()
+    for courses_row in courses_rows:
+        course_id = courses_row['course_id']
+        slot = courses_row['slot']
+        students_with_this_course = students.objects.values().filter(course_id=course_id)
+        batches_with_this_course = []
+        for students_row in students_with_this_course:
+            batch_id = students_row['batch_id']
+            if not batch_id in batches_with_this_course:
+                batches_with_this_course.append(batch_id)
+        schedule = []
+        global_time_table = slot_time_table.objects.values()
+        for dayIndex in range(5):
+            schedule_of_day = ["0", "0", "0", "0", "0", "0", "0", "0", "0"]
+            global_schedule_of_day = global_time_table[dayIndex]
+            for hourIndex in range(1,10):
+                if global_schedule_of_day['hour'+str(hourIndex)] == slot:
+                    schedule_of_day[hourIndex-1] = "1";
+
+            schedule.append(schedule_of_day.copy())
+
+        for batch in batches_with_this_course:
+             _,row=time_table.objects.update_or_create(course_id=course_id,batch_id=batch,allocation=schedule)
+
+    return HttpResponse("Thanks")
