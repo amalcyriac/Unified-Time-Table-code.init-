@@ -75,7 +75,7 @@ def new_admin(request):
             hour8 = column[8],
             hour9 = column[9]
         )
-
+    time_table.objects.all().delete()
     return HttpResponse("Successfully uploaded, Thank you.")
 
 def update_database_dss(request):
