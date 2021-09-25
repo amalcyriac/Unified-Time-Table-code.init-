@@ -6,5 +6,8 @@ def index(request):
     return HttpResponse("Hello, world !")
 
 def new_admin(request):
-    return render(request,'admin.html')
+    return render(request,'admin_page.html')
     #return HttpResponse("Welcome to admin page!")
+
+def update_database_dss(request):
+    return HttpResponse("File received thankyou!")

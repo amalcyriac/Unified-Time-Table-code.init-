@@ -5,5 +5,14 @@
     </head>
     <body>
       <h1>HI</h1>
+      <h3><u>Upload CSV files from DSS</u></h3>
+      {{ order }}
+      <form method ="post" action = "update_database_dss" enctype="multipart/form-data">
+          {% csrf_token %}
+          <label>Upload a file</label>
+          <input type="file" name = "file">
+          <p>Note : Only accepts CSV files</p>
+          <input class="btn-lg btn-primary" type="submit" value="Upload">
+      </form>
     </body>
 </html>

@@ -25,4 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', include('MDAT.urls')),
     path('new_admin', views.new_admin, name='new_admin'),
+    path('update_database_dss', views.update_database_dss, name='update_database_dss'),
 ]
