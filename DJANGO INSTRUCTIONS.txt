@@ -1,3 +1,22 @@
+install postgresql
+username : postgres
+password : postgres
+
+in sql shell:
+CREATE DATABASE MDAT_DATABASE;
+CREATE USER thanzeel WITH PASSWORD 'postgres';
+
+optional----
+ALTER ROLE thanzeel SET client_encoding TO 'utf8;
+ALTER ROLE thanzeel SET default_transaction_isolation TO 'read committed';
+ALTER ROLE thanzeel SET timezone TO 'UTC';
+---------
+
+GRANT ALL PRIVILEGES ON DATABASE MDAT_DATABASE TO thanzeel;
+ALTER USER thanzeel WITH SUPERUSER;
+ALTER USER thanzeel WITH CREATEDB;
+ALTER USER thanzeel WITH CREATEROLE;
+
 pip install virtualenv
 virtualenv newenv
 newenv\Scripts\activate
@@ -6,3 +25,19 @@ django-admin --version (outputs 3.2.7)
 django-admin startproject UnifiedTT
 cd UnifiedTT
 python manage.py runserver
+python manage.py startapp MDAT
+pip install psycopg2
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
+thanzeel
+password
+
+class student(models.Model):
+    student_id = models.CharField(max_length = 20)
+    course_id = models.CharField(max_length = 20)
+    batch_id = models.CharField(max_length = 20)
+
+    class Meta:
+        db_table = 'student'
