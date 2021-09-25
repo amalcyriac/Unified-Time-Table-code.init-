@@ -1,5 +1,5 @@
-teacher_id,course_id,batch_id,cr_id
-thanzeelhassan@gmail.com,CS6000D,4,B180322CS
-amalcyriac916@gmail.com,CS5000D,3,B180322CS
-amalcyriac916@gmail.com,CS4044D,1,B180398CS
-thanzeelhassan@gmail.com,CS4044D,2,B180398CS
+teacher_id,course_id,batch_id
+thanzeelhassan@gmail.com,CS6000D,4
+amalcyriac916@gmail.com,CS5000D,3
+amalcyriac916@gmail.com,CS4044D,1
+thanzeelhassan@gmail.com,CS4044D,2
