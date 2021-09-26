@@ -243,6 +243,8 @@ def find_free_slots(request):
     fromHour = request.POST.get('st',None)
 
     teacherTT = find_tt_both(teacherID, "teacher")
+    fromBatch = teacherTT[int(fromDay)-1]['hour'+fromHour+'batch']
+
     freeSlotsOfTeacher = []
     for teacherTTDay in teacherTT:
         for i in range(1,10):
@@ -254,6 +256,7 @@ def find_free_slots(request):
     batchesThisTeacherTeach = []
     for row in teacherRows:
         batchesThisTeacherTeach.append(row['batch_id'])
+    batchesThisTeacherTeach = [fromBatch]
     studentsInTheseBatches = []
     allStudents = students.objects.values()
     for studentRow in allStudents:
@@ -270,6 +273,7 @@ def find_free_slots(request):
 
     possibleFreeSlots = []
     curTT = time_table.objects.values()
+
     for freeSlotOfTeacher in freeSlotsOfTeacher:
         freeDay = freeSlotOfTeacher[0]
         freeHour = freeSlotOfTeacher[1]
@@ -279,8 +283,6 @@ def find_free_slots(request):
             schedule = ast.literal_eval(schedule)
             if schedule[int(freeDay)-1][int(freeHour)-1] != "0":
                 include = False
-                if freeDay == "2" and freeHour == "1":
-                    return HttpResponse("hi")
         if include == True:
             possibleFreeSlots.append(freeSlotOfTeacher)
 
