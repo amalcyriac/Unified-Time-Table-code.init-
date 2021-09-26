@@ -80,9 +80,53 @@ def new_admin(request):
         )
     time_table.objects.all().delete()
     return HttpResponse("Successfully uploaded, Thank you.")
+    
+def find_tt_both(id, type):
+    if type == 'student':
+        studentORteacherData = students.objects.values().filter(student_id = id.lower())
+    else:
+        studentORteacherData = teachers.objects.values().filter(teacher_id = id.lower())
+
+    coursesAndBatches = []
+
+    for row in studentORteacherData:
+        coursesAndBatches.append((row['course_id'], row['batch_id']))
+
+    ttRows = time_table.objects.values()
+    ans = [{},{},{},{},{}]
+    for i in range(5):
+        for j in range(1,10):
+            ans[i]['hour'+str(j)] = ""
+    for course, batch in coursesAndBatches:
+        courseName = courses.objects.values().filter(course_id=course)[0]['course_name']
+        ttRow = ttRows.filter(course_id=course,batch_id=batch)[0]
+        scheduleForSubject = ttRow['allocation']
+        scheduleForSubject = ast.literal_eval(scheduleForSubject)
+
+        for dayIndex in range(5):
+            day = str(dayIndex+1)
+            ans[dayIndex]['dayNum'] = day
+            if day == "1":
+                ans[dayIndex]['day'] = "Monday"
+            elif day == "2":
+                ans[dayIndex]['day'] = "Tuesday"
+            elif day == "3":
+                ans[dayIndex]['day'] = "Wednesday"
+            elif day == "4":
+                ans[dayIndex]['day'] = "Thursday"
+            elif day == "5":
+                ans[dayIndex]['day'] = "Friday"
+
+            scheduleForSubjectDay = scheduleForSubject[dayIndex]
+            for hour in range(9):
+                if scheduleForSubjectDay[hour] == "1":
+                    ans[dayIndex]['hour'+str(hour+1)] = courseName
+                    ans[dayIndex]['hour'+str(hour+1)+"coursecode"] = course
+                    ans[dayIndex]['hour'+str(hour+1)+"batch"] = batch
+
+    return ans
 
 def find_tt_student(request):
-
     template = "home_student.html"
     if request.method == "GET":
         form = forms.roll_no()
@@ -91,50 +135,18 @@ def find_tt_student(request):
     form = forms.roll_no(request.POST)
     if form.is_valid():
         input_roll_no = form.cleaned_data['roll_no']
-        if students.objects.filter(student_id__icontains = input_roll_no).exists() :
-            studentData = students.objects.values().filter(student_id = input_roll_no.lower())
 
-            coursesAndBatches = []
+        studentsWithThisRoll = students.objects.values().filter(student_id=input_roll_no)
+        teachersWithThisId = teachers.objects.values().filter(teacher_id=input_roll_no)
+        ans = None
+        if len(studentsWithThisRoll) > 0:
+            ans = find_tt_both(input_roll_no, 'student')
+        elif len(teachersWithThisId) > 0:
+            ans = find_tt_both(input_roll_no, 'teacher')
+        else:
+            return HttpResponse("Error, give valid input for roll no")
 
-            for row in studentData:
-                coursesAndBatches.append((row['course_id'], row['batch_id']))
-
-            ttRows = time_table.objects.values()
-            ans = [{},{},{},{},{}]
-            for i in range(5):
-                for j in range(1,10):
-                    ans[i]['hour'+str(j)] = ""
-            for course, batch in coursesAndBatches:
-                courseName = courses.objects.values().filter(course_id=course)[0]['course_name']
-                ttRow = ttRows.filter(course_id=course,batch_id=batch)[0]
-                scheduleForSubject = ttRow['allocation']
-                scheduleForSubject = ast.literal_eval(scheduleForSubject)
-
-                for dayIndex in range(5):
-                    day = str(dayIndex+1)
-                    ans[dayIndex]['dayNum'] = day
-                    if day == "1":
-                        ans[dayIndex]['day'] = "Monday"
-                    elif day == "2":
-                        ans[dayIndex]['day'] = "Tuesday"
-                    elif day == "3":
-                        ans[dayIndex]['day'] = "Wednesday"
-                    elif day == "4":
-                        ans[dayIndex]['day'] = "Thursday"
-                    elif day == "5":
-                        ans[dayIndex]['day'] = "Friday"
-
-                    scheduleForSubjectDay = scheduleForSubject[dayIndex]
-                    for hour in range(9):
-                        if scheduleForSubjectDay[hour] == "1":
-                            ans[dayIndex]['hour'+str(hour+1)] = courseName
-                            ans[dayIndex]['hour'+str(hour+1)+"coursecode"] = course
-                            ans[dayIndex]['hour'+str(hour+1)+"batch"] = batch
-            return render(request,'home_student.html',{'form':form,'var3':ans,})
-
-        else :
-            return HttpResponse("Error")
-
+        return render(request,'home_student.html',{'form':form,'var3':ans,})
 
 def fill_time_table_using_dss_data(request):
     # _,row=credited_courses_table.objects.update_or_create(roll_no=roll,faculty_name='SUSHANT VARMA',course_name='MATHEMATICS',feedback_status=0)

@@ -77,7 +77,7 @@
                         {% for a in var3 %}
                         <tr id="monday">
                             <th class="text-uppercase">{{ a.day }}</th>
-                            <td>
+                            <td class = "p-3 mb-2 bg-info text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
 
@@ -85,102 +85,102 @@
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="1">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{ a.hour1 }}</span>
+                                  <span>{{ a.hour1 }}</span>
                                 </button>
                               </form>
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-warning text-dark">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour2 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="2">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-green padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour2 }}</span>
+                                  <span>{{ a.hour2 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-danger text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour3 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="3">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour3 }}</span>
+                                  <span>{{ a.hour3 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td>
+                            <td class ="p-3 mb-2 bg-info text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour4 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="4">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour4 }}</span>
+                                  <span>{{ a.hour4 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-primary text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour5 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="5">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour5 }}</span>
+                                  <span>{{ a.hour5 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-warning text-dark">
                               <form method="post" action="" class="inline">
                               {% csrf_token %}
                               <input type="hidden" name="avg" value="{{ a.hour6 }}">
                               <input type="hidden" name="fname" value="{{ a.day }}">
                               <input type="hidden" name="st" value="6">
                               <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                <span class="bg-yellow padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour6 }}</span>
+                                <span>{{ a.hour6 }}</span>
                               </button>
                             </form>
 
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-success text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour7 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="7">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour7 }}</span>
+                                  <span>{{ a.hour7 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td>
+                            <td class = "p-3 mb-2 bg-secondary text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour8 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="8">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-purple padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16  xs-font-size13">{{ a.hour8 }}</span>
+                                  <span>{{ a.hour8 }}</span>
                                 </button>
                               </form>
 
                             </td>
-                            <td class="bg-light-gray">
+                            <td class="p-3 mb-2 bg-danger text-white">
                               <form method="post" action="" class="inline">
                                 {% csrf_token %}
                                 <input type="hidden" name="avg" value="{{ a.hour9 }}">
                                 <input type="hidden" name="fname" value="{{ a.day }}">
                                 <input type="hidden" name="st" value="9">
                                 <button type="submit" name="submit_param" value="submit_value" class="link-button">
-                                  <span class="bg-sky padding-5px-tb padding-15px-lr border-radius-5 margin-10px-bottom text-white font-size16 xs-font-size13">{{ a.hour9 }}</span>
+                                  <span>{{ a.hour9 }}</span>
                                 </button>
                               </form>
 
@@ -196,48 +196,7 @@
         </section>
         <!-- Signup-->
 
-        <!-- Contact-->
-        <section class="contact-section bg-black">
-            <div class="container px-4 px-lg-5">
-                <div class="row gx-4 gx-lg-5">
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-map-marked-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Address</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">4923 Market Street, Orlando FL</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-envelope text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Email</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50"><a href="#!">hello@yourdomain.com</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 mb-3 mb-md-0">
-                        <div class="card py-4 h-100">
-                            <div class="card-body text-center">
-                                <i class="fas fa-mobile-alt text-primary mb-2"></i>
-                                <h4 class="text-uppercase m-0">Phone</h4>
-                                <hr class="my-4 mx-auto" />
-                                <div class="small text-black-50">+1 (555) 902-8832</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="social d-flex justify-content-center">
-                    <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                    <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
-                </div>
-            </div>
-        </section>
+
         <!-- Footer-->
         <footer class="footer bg-black small text-center text-white-50"><div class="container px-4 px-lg-5">Copyright &copy; Your Website 2021</div></footer>
         <!-- Bootstrap core JS-->
