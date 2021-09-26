@@ -30,6 +30,10 @@ Once change is made, the data will be updated in the central database so that no
 Teaher and student both need to agree to make a change
 Send notification to the teacher and student once a change is made
 The teacher can appoint the CR from the website for that course (for the timetable purpose)
+If students’ vote is required for a change, it can be included. Then decisions can be made based on that
+If a change has happened, the concerned teachers/CR can be notified because some new opportunities might arise due to the change. (If teacher A has made a change, all CRs of those students who have the teacher will receive notification)
+We can save history to revert changes
+The current database is made to conserve space since timetable changes are not frequent. We can optimize it to make it better.
 
 ****
 
