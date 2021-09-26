@@ -27,8 +27,8 @@ Note : Even if some teachers are not willing to use this, others can use it sinc
 Once change is made, the data will be updated in the central database so that no clashes will occur for other batches
 
 **Future Plans**
-Teaher and student both need to agree to make a change
-Send notification to the teacher and student once a change is made
+Teacher and CR both need to agree to make a change
+Send notification to the teacher and students once a change is made
 The teacher can appoint the CR from the website for that course (for the timetable purpose)
 If students’ vote is required for a change, it can be included. Then decisions can be made based on that
 If a change has happened, the concerned teachers/CR can be notified because some new opportunities might arise due to the change. (If teacher A has made a change, all CRs of those students who have the teacher will receive notification)
