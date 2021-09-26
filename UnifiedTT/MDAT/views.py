@@ -14,6 +14,7 @@ def index(request):
 
 def home(request):
     return render(request,"home_page.html")
+
 def new_admin(request):
     template="admin_page.html"
     if request.method == "GET":
@@ -136,10 +137,10 @@ def find_tt_student(request):
 
     form = forms.roll_no(request.POST)
     if form.is_valid():
-        input_roll_no = form.cleaned_data['roll_no']
+        input_roll_no = form.cleaned_data['roll_no'].lower()
 
-        studentsWithThisRoll = students.objects.values().filter(student_id=input_roll_no.lower())
-        teachersWithThisId = teachers.objects.values().filter(teacher_id=input_roll_no.lower())
+        studentsWithThisRoll = students.objects.values().filter(student_id=input_roll_no)
+        teachersWithThisId = teachers.objects.values().filter(teacher_id=input_roll_no)
         ans = None
         if len(studentsWithThisRoll) > 0:
             ans = find_tt_both(input_roll_no, 'student')
