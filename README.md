@@ -33,7 +33,7 @@ The teacher can appoint the CR from the website for that course (for the timetab
 If students’ vote is required for a change, it can be included. Then decisions can be made based on that
 If a change has happened, the concerned teachers/CR can be notified because some new opportunities might arise due to the change. (If teacher A has made a change, all CRs of those students who have the teacher will receive notification)
 We can save history to revert changes
-The current database is made to conserve space since timetable changes are not frequent. We can optimize it to make it better.
+The current database is made to conserve space and interdependencies since timetable changes are not frequent. We can optimize it to make it better.
 
 ****
 
