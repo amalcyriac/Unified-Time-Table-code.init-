@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        {% load socialaccount %}
         {% load static %}
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -54,9 +56,9 @@
           <br>
         <div>
           <div class="text-center">
-            <button type="button" class="btn btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="">
+            <a type="button" class="btn btn btn-warning btn-xl text-uppercase js-scroll-trigger" href="{% provider_login_url 'google' %}">
               <font size="+2">  <i class="fab fa-google"></i> </font>
-              Login</button>
+              Login</a>
           </div>
         </div>
         </section>
