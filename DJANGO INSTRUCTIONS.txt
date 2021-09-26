@@ -37,3 +37,5 @@ python manage.py createsuperuser
 thanzeel
 password
 
+
+Pip install django allauth

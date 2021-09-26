@@ -12,6 +12,8 @@ import ast
 def index(request):
     return HttpResponse("Hello, world !")
 
+def home(request):
+    return render(request,"home_page.html")
 def new_admin(request):
     template="admin_page.html"
     if request.method == "GET":
@@ -80,7 +82,7 @@ def new_admin(request):
         )
     time_table.objects.all().delete()
     return HttpResponse("Successfully uploaded, Thank you.")
-    
+
 def find_tt_both(id, type):
     if type == 'student':
         studentORteacherData = students.objects.values().filter(student_id = id.lower())
@@ -136,8 +138,8 @@ def find_tt_student(request):
     if form.is_valid():
         input_roll_no = form.cleaned_data['roll_no']
 
-        studentsWithThisRoll = students.objects.values().filter(student_id=input_roll_no)
-        teachersWithThisId = teachers.objects.values().filter(teacher_id=input_roll_no)
+        studentsWithThisRoll = students.objects.values().filter(student_id=input_roll_no.lower())
+        teachersWithThisId = teachers.objects.values().filter(teacher_id=input_roll_no.lower())
         ans = None
         if len(studentsWithThisRoll) > 0:
             ans = find_tt_both(input_roll_no, 'student')
